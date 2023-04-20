@@ -10,6 +10,7 @@ let searchList = document.querySelector("#searchList");
 let tempInfoEl = document.querySelector("#tempInfo");
 let windInfoEl = document.querySelector("#windInfo");
 let humInfoEl = document.querySelector("#humInfo");
+let cardInfoEl = document.querySelector("#card");
 let cityList = [];
 let coordinates = {
   name: "",
@@ -42,6 +43,7 @@ function grabCity() {
       cityList.push(coordinates);
       localStorage.setItem("cities", JSON.stringify(cityList));
       currentWeather(coordinates.latitude, coordinates.longitude);
+      fiveDay(coordinates.latitude, coordinates.longitude);
     });
 }
 
@@ -54,13 +56,41 @@ function currentWeather(latitude, longitude) {
       return result.json();
     })
     .then((data) => {
-      console.log(data);
       tempInfoEl.innerText = `Temperature: ${Math.floor(data.main.temp)} F`;
       windInfoEl.innerText = `Wind Speed: ${Math.floor(data.wind.speed)} mph`;
       humInfoEl.innerText = `Humidity: ${Math.floor(data.main.humidity)}%`;
     });
 }
 
-searchBtnEl.addEventListener("click", grabCity);
+// Fetch 5 day forecast
+function fiveDay(latitude, longitude) {
+  let queryURL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=imperial`;
 
-// Search City Finder
+  fetch(queryURL)
+    .then((result) => {
+      return result.json();
+    })
+    .then((data) => {
+      console.log(data);
+      // Making an array to populate the 5 days of cards
+      //   infoArray = [];
+      //   for (let i = 0; i < data.list.length; i += 8) {
+      //     infoArray.push(data.list[i]);
+      //   }
+      //   console.log(infoArray);
+      //   for (let i = 0; i < cardInfoEl.length; i++) {
+      //     cardInfoEl.children[0].innerText = `Date: ${infoArray[i].dt_txt}`;
+      //     cardInfoEl.children[1].innerText = `Temperature: ${Math.floor(
+      //       infoArray[i].main.temp
+      //     )} F`;
+      //     cardInfoEl.children[2].innerText = `Wind Speed: ${Math.floor(
+      //       infoArray[i].wind.speed
+      //     )} mph`;
+      //     cardInfoEl.children[3].innerText = `Humidity: ${Math.floor(
+      //       infoArray[i].main.humidity
+      //     )}%`;
+      // }
+    });
+}
+
+searchBtnEl.addEventListener("click", grabCity);
