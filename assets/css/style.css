@@ -1,0 +1,16 @@
+header {
+    justify-content: center;
+    text-align: center;
+    background-color: rgb(89, 89, 234);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    font-size: 150%;
+}
+
+hr{
+    margin-left: 0;
+}
+
+.left {
+    justify-content: left;
+}
