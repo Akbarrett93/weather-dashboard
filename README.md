@@ -24,6 +24,7 @@
 
   ## Usage
   Simply search for the city you want to find in the search bar.
+  https://akbarrett93.github.io/weather-dashboard/
 
   ![screenshot](https://user-images.githubusercontent.com/118003612/233692186-16e62256-3ab5-4de6-8a33-abbaa28eeb11.png)
 
