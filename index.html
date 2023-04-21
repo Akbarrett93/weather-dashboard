@@ -16,21 +16,21 @@
 
 <body>
     <container id="big-container" class="row">
-        <container id="searchContainer" class="col-2 left">
+        <container id="searchContainer" class="col-2 justify-content-center text-center">
             <div>
                 <h2>Search for a City:</h2>
                 <input type="text" id="citySearch" placeholder="Durham">
             </div>
             <div>
                 <button id="searchBtn">Search</button>
-                <hr style="width:10%" />
+                <hr style="width:100%" />
             </div>
-            <ul id="searchList"></ul>
+            <form id="searchList" class=""></form>
         </container>
 
-        <container id="displayContainer" class="col-10">
+        <container id="displayContainer" class="col-9">
             <div id="currentInfo" class="border">
-                <h1 id="city">Test</h1>
+                <h1 id="city"></h1>
                 <h3 id="tempInfo"></h3>
                 <h3 id="windInfo"></h3>
                 <h3 id="humInfo"></h3>
