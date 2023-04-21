@@ -2,8 +2,6 @@
 const apiKey = "f85207c11a3b25678f5b5937e7203aa2";
 
 // Global variables
-let currentInfoEl = document.querySelector("#currentInfo");
-let fiveDayEl = document.querySelector("#fiveDay");
 let citySearchEl = document.querySelector("#citySearch");
 let searchBtnEl = document.querySelector("#searchBtn");
 let searchList = document.querySelector("#searchList");
@@ -17,6 +15,12 @@ let coordinates = {
   latitude: "",
   longitude: "",
 };
+
+// Date converter from UTC
+function dateConverter(dt) {
+  let newDay = new Date(dt * 1000)
+  return newDay.toDateString("en-us")
+}
 
 // Fetch coordinates based on city name by city name
 function grabCity() {
@@ -71,14 +75,14 @@ function fiveDay(latitude, longitude) {
       return result.json();
     })
     .then((data) => {
-      console.log(data);
       // Making an array to populate the 5 days of cards
       infoArray = [];
       for (let i = 0; i < data.list.length; i += 8) {
         infoArray.push(data.list[i]);
       }
+      console.log(infoArray);
       for (let i = 0; i < cardInfoEl.length; i++) {
-        cardInfoEl[i].children[0].innerText = `Date: ${infoArray[i].dt_txt}`;
+        cardInfoEl[i].children[0].innerText = `${dateConverter(infoArray[i].dt)}`;
         cardInfoEl[i].children[1].innerText = `Temperature: ${Math.floor(
           infoArray[i].main.temp
         )} F`;
