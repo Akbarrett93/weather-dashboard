@@ -10,7 +10,7 @@ let searchList = document.querySelector("#searchList");
 let tempInfoEl = document.querySelector("#tempInfo");
 let windInfoEl = document.querySelector("#windInfo");
 let humInfoEl = document.querySelector("#humInfo");
-let cardInfoEl = document.querySelector("#card");
+let cardInfoEl = document.querySelectorAll("#card");
 let cityList = [];
 let coordinates = {
   name: "",
@@ -73,23 +73,22 @@ function fiveDay(latitude, longitude) {
     .then((data) => {
       console.log(data);
       // Making an array to populate the 5 days of cards
-      //   infoArray = [];
-      //   for (let i = 0; i < data.list.length; i += 8) {
-      //     infoArray.push(data.list[i]);
-      //   }
-      //   console.log(infoArray);
-      //   for (let i = 0; i < cardInfoEl.length; i++) {
-      //     cardInfoEl.children[0].innerText = `Date: ${infoArray[i].dt_txt}`;
-      //     cardInfoEl.children[1].innerText = `Temperature: ${Math.floor(
-      //       infoArray[i].main.temp
-      //     )} F`;
-      //     cardInfoEl.children[2].innerText = `Wind Speed: ${Math.floor(
-      //       infoArray[i].wind.speed
-      //     )} mph`;
-      //     cardInfoEl.children[3].innerText = `Humidity: ${Math.floor(
-      //       infoArray[i].main.humidity
-      //     )}%`;
-      // }
+      infoArray = [];
+      for (let i = 0; i < data.list.length; i += 8) {
+        infoArray.push(data.list[i]);
+      }
+      for (let i = 0; i < cardInfoEl.length; i++) {
+        cardInfoEl[i].children[0].innerText = `Date: ${infoArray[i].dt_txt}`;
+        cardInfoEl[i].children[1].innerText = `Temperature: ${Math.floor(
+          infoArray[i].main.temp
+        )} F`;
+        cardInfoEl[i].children[2].innerText = `Wind Speed: ${Math.floor(
+          infoArray[i].wind.speed
+        )} mph`;
+        cardInfoEl[i].children[3].innerText = `Humidity: ${Math.floor(
+          infoArray[i].main.humidity
+        )}%`;
+      }
     });
 }
 
